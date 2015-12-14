@@ -33,11 +33,6 @@ func main() {
 	for _, a := range apps {
 		r, _ := c.GetAppRelease(a.ID)
 		// TODO: log err, but continue
-		fmt.Println(r.Env["PGHOST"])
-		fmt.Println(r.Env["PGDATABASE"])
-		fmt.Println(r.Env["PGUSER"])
-		fmt.Println(r.Env["PGPASSWORD"])
-
 		if r.Env["PGDATABASE"] != "" {
 			log.Printf("Backing up %s (%s)", a.Name, a.ID)
 
