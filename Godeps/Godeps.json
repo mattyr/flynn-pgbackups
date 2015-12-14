@@ -18,6 +18,16 @@
 			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
 		},
 		{
+			"ImportPath": "github.com/flynn/flynn/discoverd/client",
+			"Comment": "v20151213.1",
+			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
+		},
+		{
+			"ImportPath": "github.com/flynn/flynn/discoverd/types",
+			"Comment": "v20151213.1",
+			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
+		},
+		{
 			"ImportPath": "github.com/flynn/flynn/host/resource",
 			"Comment": "v20151213.1",
 			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
@@ -28,12 +38,27 @@
 			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
 		},
 		{
+			"ImportPath": "github.com/flynn/flynn/host/volume",
+			"Comment": "v20151213.1",
+			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
+		},
+		{
+			"ImportPath": "github.com/flynn/flynn/pinkerton/layer",
+			"Comment": "v20151213.1",
+			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
+		},
+		{
 			"ImportPath": "github.com/flynn/flynn/pkg/attempt",
 			"Comment": "v20151213.1",
 			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
 		},
 		{
 			"ImportPath": "github.com/flynn/flynn/pkg/certgen",
+			"Comment": "v20151213.1",
+			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
+		},
+		{
+			"ImportPath": "github.com/flynn/flynn/pkg/cluster",
 			"Comment": "v20151213.1",
 			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
 		},
