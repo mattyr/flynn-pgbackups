@@ -7,9 +7,9 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/rlmcpherson/s3gof3r"
+	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/rlmcpherson/s3gof3r"
 
-	"github.com/flynn/flynn/controller/client"
+	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/controller/client"
 )
 
 func main() {
