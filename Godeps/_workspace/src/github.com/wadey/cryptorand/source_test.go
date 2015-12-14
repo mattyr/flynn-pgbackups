@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/wadey/cryptorand"
+	"github.com/wadey/cryptorand"
 )
 
 func TestSource(t *testing.T) {

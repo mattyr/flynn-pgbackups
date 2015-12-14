@@ -8,9 +8,9 @@ import (
 	"sync"
 	"time"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/attempt"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/sse"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/stream"
+	"github.com/flynn/flynn/pkg/attempt"
+	"github.com/flynn/flynn/pkg/sse"
+	"github.com/flynn/flynn/pkg/stream"
 )
 
 /*

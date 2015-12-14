@@ -2,7 +2,7 @@ package ext
 
 import (
 	"errors"
-	log "lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/gopkg.in/inconshreveable/log15.v2"
+	log "gopkg.in/inconshreveable/log15.v2"
 	"math"
 	"testing"
 )

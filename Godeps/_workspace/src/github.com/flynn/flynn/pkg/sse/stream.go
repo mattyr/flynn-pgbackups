@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	log "lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/gopkg.in/inconshreveable/log15.v2"
-	hh "lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/httphelper"
+	log "gopkg.in/inconshreveable/log15.v2"
+	hh "github.com/flynn/flynn/pkg/httphelper"
 )
 
 type identifier interface {

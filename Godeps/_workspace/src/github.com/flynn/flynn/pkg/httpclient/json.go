@@ -13,8 +13,8 @@ import (
 	"strconv"
 	"strings"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/httphelper"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/stream"
+	"github.com/flynn/flynn/pkg/httphelper"
+	"github.com/flynn/flynn/pkg/stream"
 )
 
 type DialFunc func(network, addr string) (net.Conn, error)

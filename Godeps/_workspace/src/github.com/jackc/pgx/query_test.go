@@ -2,7 +2,7 @@ package pgx_test
 
 import (
 	"bytes"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/jackc/pgx"
+	"github.com/jackc/pgx"
 	"strings"
 	"testing"
 	"time"

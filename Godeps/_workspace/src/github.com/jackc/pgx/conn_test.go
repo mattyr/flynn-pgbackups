@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/jackc/pgx"
+	"github.com/jackc/pgx"
 )
 
 func TestConnect(t *testing.T) {

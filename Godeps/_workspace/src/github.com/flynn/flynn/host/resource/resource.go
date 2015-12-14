@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/docker/docker/pkg/units"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/typeconv"
+	"github.com/docker/docker/pkg/units"
+	"github.com/flynn/flynn/pkg/typeconv"
 )
 
 type Spec struct {

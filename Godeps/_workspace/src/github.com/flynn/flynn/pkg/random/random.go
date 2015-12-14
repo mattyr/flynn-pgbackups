@@ -9,7 +9,7 @@ import (
 	mathrand "math/rand"
 	"strings"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/wadey/cryptorand"
+	"github.com/wadey/cryptorand"
 )
 
 var Math = mathrand.New(cryptorand.Source)

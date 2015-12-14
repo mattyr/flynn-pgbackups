@@ -4,9 +4,9 @@ import (
 	"reflect"
 	"testing"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/docker/docker/pkg/units"
+	"github.com/docker/docker/pkg/units"
 	. "github.com/flynn/go-check"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/typeconv"
+	"github.com/flynn/flynn/pkg/typeconv"
 )
 
 // Hook gocheck up to the "go test" runner

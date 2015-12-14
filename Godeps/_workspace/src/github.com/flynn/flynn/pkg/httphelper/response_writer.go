@@ -6,7 +6,7 @@ import (
 	"net"
 	"net/http"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/golang.org/x/net/context"
+	"golang.org/x/net/context"
 )
 
 func NewResponseWriter(w http.ResponseWriter, ctx context.Context) *ResponseWriter {

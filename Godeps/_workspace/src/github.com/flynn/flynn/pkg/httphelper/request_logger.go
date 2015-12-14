@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	log "lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/gopkg.in/inconshreveable/log15.v2"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/ctxhelper"
+	log "gopkg.in/inconshreveable/log15.v2"
+	"github.com/flynn/flynn/pkg/ctxhelper"
 )
 
 func NewRequestLogger(handler http.Handler) http.Handler {

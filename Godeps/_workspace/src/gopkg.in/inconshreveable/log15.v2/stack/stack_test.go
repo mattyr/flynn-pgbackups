@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"testing"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/gopkg.in/inconshreveable/log15.v2/stack"
+	"gopkg.in/inconshreveable/log15.v2/stack"
 )
 
 type testType struct{}

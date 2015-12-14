@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/rlmcpherson/s3gof3r"
+	"github.com/rlmcpherson/s3gof3r"
 )
 
 type putOpts struct {

@@ -3,7 +3,7 @@ package tlscert
 import (
 	"fmt"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/certgen"
+	"github.com/flynn/flynn/pkg/certgen"
 )
 
 type Cert struct {

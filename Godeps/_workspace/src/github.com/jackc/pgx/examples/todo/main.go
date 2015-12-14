@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/jackc/pgx"
+	"github.com/jackc/pgx"
 	"os"
 	"strconv"
 )

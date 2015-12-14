@@ -38,7 +38,7 @@ import (
 	"time"
 
 	"github.com/jessevdk/go-flags"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/rlmcpherson/s3gof3r"
+	"github.com/rlmcpherson/s3gof3r"
 )
 
 const (

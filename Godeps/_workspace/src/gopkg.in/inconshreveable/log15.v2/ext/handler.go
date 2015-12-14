@@ -6,7 +6,7 @@ import (
 	"sync/atomic"
 	"unsafe"
 
-	log "lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/gopkg.in/inconshreveable/log15.v2"
+	log "gopkg.in/inconshreveable/log15.v2"
 )
 
 // EscalateErrHandler wraps another handler and passes all records through

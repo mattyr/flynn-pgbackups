@@ -3,8 +3,8 @@ package log15
 import (
 	"os"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/mattn/go-colorable"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/gopkg.in/inconshreveable/log15.v2/term"
+	"github.com/mattn/go-colorable"
+	"gopkg.in/inconshreveable/log15.v2/term"
 )
 
 var (

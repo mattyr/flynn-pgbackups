@@ -10,12 +10,12 @@ import (
 	"syscall"
 	"time"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/jackc/pgx"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/julienschmidt/httprouter"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/golang.org/x/net/context"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/cors"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/ctxhelper"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/random"
+	"github.com/jackc/pgx"
+	"github.com/julienschmidt/httprouter"
+	"golang.org/x/net/context"
+	"github.com/flynn/flynn/pkg/cors"
+	"github.com/flynn/flynn/pkg/ctxhelper"
+	"github.com/flynn/flynn/pkg/random"
 )
 
 type ErrorCode string

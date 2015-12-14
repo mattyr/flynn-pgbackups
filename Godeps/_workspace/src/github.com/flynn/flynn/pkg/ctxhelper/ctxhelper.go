@@ -3,9 +3,9 @@ package ctxhelper
 import (
 	"time"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/julienschmidt/httprouter"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/golang.org/x/net/context"
-	log "lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/gopkg.in/inconshreveable/log15.v2"
+	"github.com/julienschmidt/httprouter"
+	"golang.org/x/net/context"
+	log "gopkg.in/inconshreveable/log15.v2"
 )
 
 type ctxKey int

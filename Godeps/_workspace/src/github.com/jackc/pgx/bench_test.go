@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/jackc/pgx"
-	log "lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/gopkg.in/inconshreveable/log15.v2"
+	"github.com/jackc/pgx"
+	log "gopkg.in/inconshreveable/log15.v2"
 )
 
 func BenchmarkConnPool(b *testing.B) {

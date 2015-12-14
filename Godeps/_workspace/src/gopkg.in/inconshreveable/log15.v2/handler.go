@@ -9,7 +9,7 @@ import (
 	"reflect"
 	"sync"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/gopkg.in/inconshreveable/log15.v2/stack"
+	"gopkg.in/inconshreveable/log15.v2/stack"
 )
 
 // A Logger prints its log records by writing to a Handler.

@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"time"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/host/resource"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/host/types"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/tlscert"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/router/types"
+	"github.com/flynn/flynn/host/resource"
+	"github.com/flynn/flynn/host/types"
+	"github.com/flynn/flynn/pkg/tlscert"
+	"github.com/flynn/flynn/router/types"
 )
 
 const RouteParentRefPrefix = "controller/apps/"

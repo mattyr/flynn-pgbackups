@@ -6,7 +6,7 @@ import (
 	"time"
 
 	. "github.com/flynn/go-check"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/attempt"
+	"github.com/flynn/flynn/pkg/attempt"
 )
 
 func Test(t *testing.T) {

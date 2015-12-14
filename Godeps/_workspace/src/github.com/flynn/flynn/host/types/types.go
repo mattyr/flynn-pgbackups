@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/host/resource"
+	"github.com/flynn/flynn/host/resource"
 )
 
 // TagPrefix is the prefix added to tags in discoverd instance metadata

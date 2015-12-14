@@ -14,13 +14,13 @@ import (
 	"strings"
 	"time"
 
-	ct "lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/controller/types"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/dialer"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/httpclient"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/httphelper"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/pinned"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/pkg/stream"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/flynn/flynn/router/types"
+	ct "github.com/flynn/flynn/controller/types"
+	"github.com/flynn/flynn/pkg/dialer"
+	"github.com/flynn/flynn/pkg/httpclient"
+	"github.com/flynn/flynn/pkg/httphelper"
+	"github.com/flynn/flynn/pkg/pinned"
+	"github.com/flynn/flynn/pkg/stream"
+	"github.com/flynn/flynn/router/types"
 )
 
 type Config struct {

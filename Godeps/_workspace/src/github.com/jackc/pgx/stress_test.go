@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/jackc/fake"
-	"lithiumreactor.com/internal/pgbackups/Godeps/_workspace/src/github.com/jackc/pgx"
+	"github.com/jackc/pgx"
 )
 
 type execer interface {
