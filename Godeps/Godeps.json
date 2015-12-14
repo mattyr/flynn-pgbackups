@@ -142,6 +142,11 @@
 			"Rev": "b574ee38528c51c2c8652b79e71245817c59bd61"
 		},
 		{
+			"ImportPath": "github.com/robfig/cron",
+			"Comment": "v1-7-g32d9c27",
+			"Rev": "32d9c273155a0506d27cf73dd1246e86a470997e"
+		},
+		{
 			"ImportPath": "github.com/wadey/cryptorand",
 			"Rev": "f71da62b90e6a6df720e69d4607dcfd10443c75a"
 		},

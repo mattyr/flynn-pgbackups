@@ -12,6 +12,8 @@ import (
 	"github.com/flynn/flynn/controller/client"
 	ct "github.com/flynn/flynn/controller/types"
 	"github.com/flynn/flynn/pkg/cluster"
+
+	"github.com/robfig/cron"
 )
 
 type config struct {
@@ -24,6 +26,16 @@ type config struct {
 }
 
 func main() {
+	c := cron.New()
+	c.AddFunc("@midnight", doBackups)
+	fmt.Println("Starting cron")
+	c.Start()
+	// block forever, as cron runs in another gorouting
+	select {}
+}
+
+func doBackups() {
+	fmt.Println("Starting backups")
 	cfg := &config{}
 	cfg.BucketName = os.Getenv("S3_BUCKET")
 	cfg.ControllerUrl = os.Getenv("CONTROLLER_URL")
