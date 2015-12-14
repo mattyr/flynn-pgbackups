@@ -45,7 +45,8 @@ func main() {
 			cmd.Env = env
 
 			now := time.Now()
-			s3Path := fmt.Sprintf("pgbackups/%s/%s.backup", a.ID, now.Format(time.RFC3339))
+			s3Path := fmt.Sprintf("pgbackups/%s/%d.backup", a.ID, now.Unix())
+
 			s3Putter, err := bucket.PutWriter(s3Path, nil, nil)
 			if err == nil {
 				// TODO: log err, but continue
