@@ -27,7 +27,8 @@ type config struct {
 
 func main() {
 	c := cron.New()
-	c.AddFunc("@midnight", doBackups)
+	// 5am UTC, ~midnight EST
+	c.AddFunc("0 0 5 * * *", doBackups)
 	fmt.Println("Starting cron")
 	c.Start()
 	// block forever, as cron runs in another gorouting
