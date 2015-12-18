@@ -4,6 +4,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"time"
 
 	"github.com/flynn/flynn/pkg/postgres"
 	"github.com/robfig/cron"
@@ -115,7 +116,51 @@ func backupApp(app *AppAndRelease, cfg *config) (int64, error) {
 }
 
 func deleteOldBackups(app *AppAndRelease, cfg *config) error {
-	// TODO
+	backups, err := cfg.Repo.GetBackups(app.App.ID)
+	if err != nil {
+		return err
+	}
+	for _, b := range backups {
+		if shouldDeleteBackup(b) {
+			err = cfg.Store.Delete(b.AppID, b.BackupID)
+			if err != nil {
+				// just log
+				log.Printf("Error deleting stored backup: %s", err)
+			} else {
+				err = cfg.Repo.DeleteBackup(b)
+				if err != nil {
+					log.Printf("Error deleting backup: %s", err)
+				}
+			}
+		}
+	}
 
 	return nil
+}
+
+func shouldDeleteBackup(b *Backup) bool {
+	// Keep those that are:
+	// - less than 7 days old (one-a-day for a week)
+	// - made on a sunday less than a month old (one-a-week for a month)
+	// - made on the first of a month (one-a-month forever)
+	// another version of this could use the backup history to determine
+	// keep-ability (thereby allowing more flexible "start-of-Month" days, etc,
+	// but this way the only needed inputs are an individual backup date and the
+	// current date.  KISS.
+	d := b.StartedAt
+	now := time.Now()
+
+	// work backwards, monthly first
+	if d.Day() == 1 {
+		return false
+	}
+	// weekly
+	if (d.Weekday() == time.Sunday) && (d.After(now.Add(-32 * 24 * time.Hour))) {
+		return false
+	}
+	// daily
+	if d.After(now.Add(-8 * 24 * time.Hour)) {
+		return false
+	}
+	return true
 }
