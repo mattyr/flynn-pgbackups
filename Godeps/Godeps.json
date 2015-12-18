@@ -1,6 +1,9 @@
 {
 	"ImportPath": "lithiumreactor.com/internal/pgbackups",
 	"GoVersion": "go1.5.1",
+	"Packages": [
+		"."
+	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/docker/docker/pkg/units",
@@ -155,6 +158,10 @@
 		{
 			"ImportPath": "github.com/mattn/go-colorable",
 			"Rev": "3dac7b4f76f6e17fb39b768b89e3783d16e237fe"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-isatty",
+			"Rev": "56b76bdf51f7708750eac80fa38b952bb9f32639"
 		},
 		{
 			"ImportPath": "github.com/rlmcpherson/s3gof3r",

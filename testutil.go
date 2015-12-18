@@ -5,8 +5,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/jackc/pgx"
 	"github.com/flynn/flynn/pkg/postgres"
+	pgx "github.com/jackc/pgx"
 )
 
 func setupTestDb() (*postgres.DB, error) {

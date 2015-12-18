@@ -1,7 +1,7 @@
 package postgres
 
 import (
-	"github.com/flynn/flynn/Godeps/_workspace/src/github.com/jackc/pgx"
+	"github.com/jackc/pgx"
 )
 
 type Migration struct {
