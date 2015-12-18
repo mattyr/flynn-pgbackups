@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/flynn/flynn/pkg/postgres"
-	pgx "github.com/jackc/pgx"
+	"github.com/jackc/pgx"
 )
 
 func setupTestDb() (*postgres.DB, error) {
