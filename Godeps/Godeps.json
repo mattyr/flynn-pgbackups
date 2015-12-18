@@ -1,6 +1,6 @@
 {
 	"ImportPath": "lithiumreactor.com/internal/pgbackups",
-	"GoVersion": "go1.5.1",
+	"GoVersion": "go1.5",
 	"Deps": [
 		{
 			"ImportPath": "github.com/docker/docker/pkg/units",
