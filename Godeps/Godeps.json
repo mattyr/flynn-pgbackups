@@ -8,6 +8,16 @@
 			"Rev": "ec1002db58e8f84fc6d8306a3dd580e5fa88872c"
 		},
 		{
+			"ImportPath": "github.com/flynn/flynn/appliance/postgresql/state",
+			"Comment": "v20151213.1",
+			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
+		},
+		{
+			"ImportPath": "github.com/flynn/flynn/appliance/postgresql/xlog",
+			"Comment": "v20151213.1",
+			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
+		},
+		{
 			"ImportPath": "github.com/flynn/flynn/controller/client",
 			"Comment": "v20151213.1",
 			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
@@ -93,7 +103,17 @@
 			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
 		},
 		{
+			"ImportPath": "github.com/flynn/flynn/pkg/postgres",
+			"Comment": "v20151213.1",
+			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
+		},
+		{
 			"ImportPath": "github.com/flynn/flynn/pkg/random",
+			"Comment": "v20151213.1",
+			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
+		},
+		{
+			"ImportPath": "github.com/flynn/flynn/pkg/shutdown",
 			"Comment": "v20151213.1",
 			"Rev": "5031204b4f32f7839deaae172931fb3b6f67d409"
 		},

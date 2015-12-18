@@ -1,138 +1,121 @@
 package main
 
 import (
-	"encoding/base64"
-	"fmt"
+	"io"
 	"log"
 	"os"
-	"time"
 
-	"github.com/rlmcpherson/s3gof3r"
-
-	"github.com/flynn/flynn/controller/client"
-	ct "github.com/flynn/flynn/controller/types"
-	"github.com/flynn/flynn/pkg/cluster"
-
+	"github.com/flynn/flynn/pkg/postgres"
 	"github.com/robfig/cron"
 )
 
 type config struct {
-	BucketName       string
-	ControllerUrl    string
-	ControllerKey    string
-	ControllerTlsPin string
-	Bucket           *s3gof3r.Bucket
-	Client           *controller.Client
+	Schedule    string
+	Store       Storer
+	FlynnClient *FlynnClient
+	Repo        *BackupRepo
 }
+
+// 5am UTC, ~midnight EST
+const defaultSchedule string = "0 0 5 * * *"
 
 func main() {
-	c := cron.New()
-	// 5am UTC, ~midnight EST
-	c.AddFunc("0 0 5 * * *", doBackups)
-	fmt.Println("Starting cron")
-	c.Start()
-	// block forever, as cron runs in another gorouting
-	select {}
-}
-
-func doBackups() {
-	fmt.Println("Starting backups")
-	cfg := &config{}
-	cfg.BucketName = os.Getenv("S3_BUCKET")
-	cfg.ControllerUrl = os.Getenv("CONTROLLER_URL")
-	cfg.ControllerKey = os.Getenv("CONTROLLER_KEY")
-	cfg.ControllerTlsPin = os.Getenv("CONTROLLER_TLS_PIN")
-
-	keys, err := s3gof3r.EnvKeys()
+	cfg, err := createConfig()
 	if err != nil {
 		panic(err)
 	}
-	s3 := s3gof3r.New("", keys)
-	cfg.Bucket = s3.Bucket(cfg.BucketName)
 
-	if cfg.ControllerTlsPin == "" {
-		c, err := controller.NewClient(cfg.ControllerUrl, cfg.ControllerKey)
-		if err != nil {
-			panic(err)
-		}
-		cfg.Client = c
-	} else {
-		pin, err := base64.StdEncoding.DecodeString(cfg.ControllerTlsPin)
-		if err != nil {
-			panic(err)
-		}
-		c, err := controller.NewClientWithConfig(cfg.ControllerUrl, cfg.ControllerKey, controller.Config{Pin: pin})
-		if err != nil {
-			panic(err)
-		}
-		cfg.Client = c
+	c := cron.New()
+
+	c.AddFunc(cfg.Schedule, func() { doBackups(cfg) })
+	log.Println("Starting cron")
+	c.Start()
+	// block forever, as cron runs in another goroutine
+	select {}
+}
+
+func createConfig() (*config, error) {
+	db := postgres.Wait(nil, nil)
+	backupRepo, err := NewBackupRepo(db)
+	if err != nil {
+		return nil, err
 	}
 
-	apps, err := cfg.Client.AppList()
+	sched := os.Getenv("SCHEDULE")
+	if sched == "" {
+		sched = defaultSchedule
+	}
+
+	bucketName := os.Getenv("S3_BUCKET")
+	store, err := NewS3Store(bucketName)
+	if err != nil {
+		return nil, err
+	}
+
+	c, err := NewFlynnClient()
+	if err != nil {
+		return nil, err
+	}
+
+	return &config{
+		Repo:        backupRepo,
+		Schedule:    sched,
+		FlynnClient: c,
+		Store:       store,
+	}, nil
+}
+
+func doBackups(cfg *config) {
+	log.Println("Starting backups")
+
+	apps, err := cfg.FlynnClient.AppList()
+	if err != nil {
+		log.Printf("Error obtaining app list: %s", err)
+		return
+	}
+
 	for _, a := range apps {
-		r, _ := cfg.Client.GetAppRelease(a.ID)
-		// TODO: log err, but continue
-		if r.Env["FLYNN_POSTGRES"] != "" {
-			log.Printf("Backing up %s (%s)", a.Name, a.ID)
-			if err = backupApp(a, r, cfg); err != nil {
-				log.Printf("Error backing up %s (%s): %s", a.Name, a.ID, err)
-			} else {
-				log.Printf("Completed backing up %s (%s)", a.Name, a.ID)
-			}
+		log.Printf("Backing up %s (%s)", a.App.Name, a.App.ID)
+		bytes, err := backupApp(a, cfg)
+		if err != nil {
+			log.Printf("Error backing up %s (%s): %s", a.App.Name, a.App.ID, err)
+			deleteOldBackups(a, cfg)
+		} else {
+			log.Printf("Completed backing up %s (%s) bytes: %d", a.App.Name, a.App.ID, bytes)
 		}
 	}
 }
 
-func backupApp(app *ct.App, release *ct.Release, cfg *config) error {
-	// from: https://github.com/flynn/flynn/blob/master/cli/pg.go
-	pgApp := release.Env["FLYNN_POSTGRES"]
-	if pgApp == "" {
-		return fmt.Errorf("No postgres database found. Provision one with `flynn resource add postgres`")
-	}
+func backupApp(app *AppAndRelease, cfg *config) (int64, error) {
+	var bytes int64
 
-	pgRelease, err := cfg.Client.GetAppRelease(pgApp)
+	// stream stdout from job to store
+	var err error
+	var b *Backup
+
+	b, err = cfg.Repo.NewBackup(app.App.ID)
 	if err != nil {
-		return fmt.Errorf("error getting postgres release: %s", err)
+		return bytes, err
 	}
 
-	req := &ct.NewJob{
-		Entrypoint: []string{"pg_dump"},
-		Cmd:        []string{"--format=custom", "--no-owner", "--no-acl"},
-		TTY:        false,
-		ReleaseID:  pgRelease.ID,
-		ReleaseEnv: false,
-		Env:        make(map[string]string),
-		DisableLog: true,
-	}
+	r, w := io.Pipe()
 
-	for _, k := range []string{"PGHOST", "PGUSER", "PGPASSWORD", "PGDATABASE"} {
-		v := release.Env[k]
-		if v == "" {
-			return fmt.Errorf("missing %s in app environment", k)
-		}
-		req.Env[k] = v
-	}
+	go func() {
+		bytes, err = cfg.Store.Put(app.App.ID, b.BackupID, r)
+	}()
 
-	now := time.Now()
-	s3Path := fmt.Sprintf("pgbackups/%s/%d.backup", app.ID, now.Unix())
-
-	s3Putter, err := cfg.Bucket.PutWriter(s3Path, nil, nil)
+	err = cfg.FlynnClient.StreamBackup(app, w)
 	if err != nil {
-		return err
+		return bytes, err
 	}
 
-	rwc, err := cfg.Client.RunJobAttached(app.ID, req)
-	if err != nil {
-		return err
-	}
-	defer rwc.Close()
-	defer s3Putter.Close()
+	err = cfg.Repo.CompleteBackup(b, bytes)
 
-	attachClient := cluster.NewAttachClient(rwc)
-	attachClient.CloseWrite()
+	return bytes, err
+}
 
-	// not worried about exit status...?
-	_, err = attachClient.Receive(s3Putter, os.Stderr)
+func deleteOldBackups(app *AppAndRelease, cfg *config) error {
+	// TODO
 
-	return err
+	return nil
 }
