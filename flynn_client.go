@@ -23,6 +23,9 @@ type AppAndRelease struct {
 func NewFlynnClient() (*FlynnClient, error) {
 	// get config from env vars
 	controllerUrl := os.Getenv("CONTROLLER_URL")
+	if controllerUrl == "" {
+		controllerUrl = "http://controller.discoverd"
+	}
 	controllerKey := os.Getenv("CONTROLLER_KEY")
 	controllerTlsPin := os.Getenv("CONTROLLER_TLS_PIN")
 
