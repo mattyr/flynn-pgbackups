@@ -77,6 +77,7 @@ func (pgb *PgBackups) BackupApp(app *AppAndRelease) (int64, error) {
 
 	errChan := make(chan error)
 	go func() {
+		var err error
 		bytes, err = pgb.Store.Put(app.App.ID, b.BackupID, r)
 		errChan <- err
 	}()
