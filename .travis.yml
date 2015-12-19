@@ -1,1 +1,8 @@
 language: go
+go:
+  - 1.5
+sudo: false
+services:
+  - postgresql
+addons:
+  postgresql: "9.3"
