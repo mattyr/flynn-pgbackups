@@ -8,5 +8,4 @@ addons:
   postgresql: "9.4"
 install:
   - go get github.com/flynn/flynn/Godeps/_workspace/src/github.com/jackc/pgx
-  - export GOPATH=${TRAVIS_BUILD_DIR}/Godeps/_workspace:$GOPATH
-  - export PATH=${TRAVIS_BUILD_DIR}/Godeps/_workspace/bin:$PATH
+  - godep restore
