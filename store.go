@@ -12,8 +12,7 @@ import (
 
 type Storer interface {
 	DownloadUrl(appId string, backupId string) (string, error)
-	// return bytes written
-	Put(appId string, backupId string, r io.Reader) (int64, error)
+	GetPutter(appId string, backupId string) (io.WriteCloser, error)
 	Delete(appId string, backupId string) error
 }
 
@@ -44,16 +43,10 @@ func (s *s3store) DownloadUrl(appId string, backupId string) (string, error) {
 	return b.SignedURL(s.pathFor(appId, backupId), time.Now().Add(20*time.Minute)), nil
 }
 
-func (s *s3store) Put(appId string, backupId string, r io.Reader) (int64, error) {
+func (s *s3store) GetPutter(appId string, backupId string) (io.WriteCloser, error) {
 	s3Path := s.pathFor(appId, backupId)
 
-	s3Putter, err := s.bucket.PutWriter(s3Path, nil, nil)
-	if err != nil {
-		return -1, err
-	}
-	defer s3Putter.Close()
-
-	return io.Copy(s3Putter, r)
+	return s.bucket.PutWriter(s3Path, nil, nil)
 }
 
 func (s *s3store) Delete(appId string, backupId string) error {
