@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"log"
 	"os"
 	"time"
@@ -72,13 +73,22 @@ func (pgb *PgBackups) BackupApp(app *AppAndRelease) (int64, error) {
 		return bytes, err
 	}
 
-	w, err := pgb.Store.GetPutter(app.App.ID, b.BackupID)
+	r, w := io.Pipe()
+
+	errChan := make(chan error)
+
+	go func() {
+		defer w.Close()
+		err := pgb.FlynnClient.StreamBackup(app, w)
+		errChan <- err
+	}()
+
+	bytes, err = pgb.Store.Put(app.App.ID, b.BackupID, r)
 	if err != nil {
 		return bytes, err
 	}
-	defer w.Close()
 
-	err = pgb.FlynnClient.StreamBackup(app, w)
+	err = <-errChan
 	if err != nil {
 		return bytes, err
 	}

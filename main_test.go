@@ -130,8 +130,8 @@ func (*dummyStore) DownloadUrl(string, string) (string, error) {
 	return "", nil
 }
 
-func (*dummyStore) GetPutter(appId string, backupId string) (io.WriteCloser, error) {
-	return nil, nil
+func (*dummyStore) Put(appId string, backupId string, r io.Reader) error {
+	return nil
 }
 
 func (*dummyStore) Delete(appId string, backupId string) error {
