@@ -33,6 +33,11 @@ func TestRepo(t *testing.T) {
 		t.Error("wrong id")
 	}
 
+	backup, err := repo.GetBackup(b.BackupID)
+	if err != nil || backup == nil {
+		t.Error("could not retrieve backup by id")
+	}
+
 	repo.CompleteBackup(b, 1234)
 	backups, _ = repo.GetBackups(id)
 	// PG time resolution is lower, so rounding is necessary

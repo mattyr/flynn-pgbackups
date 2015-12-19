@@ -82,5 +82,9 @@ func backupUrl(pgb *PgBackups) {
 		panic(err)
 	}
 
-	fmt.Println(pgb.Store.DownloadUrl(b.AppID, b.BackupID))
+	url, err := pgb.Store.DownloadUrl(b.AppID, b.BackupID)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(url)
 }
