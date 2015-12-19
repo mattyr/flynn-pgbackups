@@ -3,7 +3,6 @@ package main
 import (
 	"time"
 
-	"github.com/flynn/flynn/Godeps/_workspace/src/github.com/jackc/pgx"
 	"github.com/flynn/flynn/pkg/postgres"
 	"github.com/flynn/flynn/pkg/random"
 )
@@ -48,7 +47,19 @@ func (r *BackupRepo) GetBackup(backupID string) (*Backup, error) {
 	if err != nil {
 		return nil, err
 	}
-	backups, err := scanBackups(rows)
+	// this scanning is repeated to avoid importing pgx and having
+	// deployment/godep errors, as flynn uses godep for pgx (known issues)
+	defer rows.Close()
+	backups := []*Backup{}
+	for rows.Next() {
+		b := &Backup{}
+		err := rows.Scan(&b.AppID, &b.BackupID, &b.StartedAt, &b.CompletedAt, &b.Bytes)
+		if err != nil {
+			rows.Close()
+			return nil, err
+		}
+		backups = append(backups, b)
+	}
 	if err != nil || len(backups) == 0 {
 		return nil, err
 	}
@@ -60,10 +71,8 @@ func (r *BackupRepo) GetBackups(appID string) ([]*Backup, error) {
 	if err != nil {
 		return nil, err
 	}
-	return scanBackups(rows)
-}
-
-func scanBackups(rows *pgx.Rows) ([]*Backup, error) {
+	// this scanning is repeated to avoid importing pgx and having
+	// deployment/godep errors, as flynn uses godep for pgx (known issues)
 	defer rows.Close()
 	backups := []*Backup{}
 	for rows.Next() {
