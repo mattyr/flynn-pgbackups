@@ -50,8 +50,11 @@ flynn resource add postgres
   ```
 - AWS_REGION [optional] - the AWS region for your S3 bucket (defaults to
   "us-east-1")
-- SCHEDULE [options] - backups schedule in cron line format (defaults to
+- SCHEDULE [optional] - backups schedule in cron line format (defaults to
   "0 0 5 \* \* \*", every day at 5AM UTC)
+- CONTROLLER_URL [optional] - the internal url for the flynn controller
+  (defaults to controller.discoverd) it's unlikely that you'll need to
+  change this.
 
 This can be done with a command like:
 
