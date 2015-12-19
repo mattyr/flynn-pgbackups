@@ -1,10 +1,12 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"io"
+	"time"
 
+	"github.com/AdRoll/goamz/aws"
+	"github.com/AdRoll/goamz/s3"
 	"github.com/rlmcpherson/s3gof3r"
 )
 
@@ -16,7 +18,8 @@ type Storer interface {
 }
 
 type s3store struct {
-	bucket *s3gof3r.Bucket
+	bucketName string
+	bucket     *s3gof3r.Bucket
 }
 
 func NewS3Store(bucketName string) (Storer, error) {
@@ -28,15 +31,21 @@ func NewS3Store(bucketName string) (Storer, error) {
 	s3 := s3gof3r.New("", keys)
 	bucket := s3.Bucket(bucketName)
 
-	return &s3store{bucket: bucket}, nil
+	return &s3store{bucketName: bucketName, bucket: bucket}, nil
 }
 
 func (s *s3store) DownloadUrl(appId string, backupId string) (string, error) {
-	return "", errors.New("todo")
+	auth, err := aws.EnvAuth()
+	if err != nil {
+		return "", err
+	}
+	svc := s3.New(auth, aws.GetRegion("us-east-1")) // TODO: configurable?
+	b := svc.Bucket(s.bucketName)
+	return b.SignedURL(s.pathFor(appId, backupId), time.Now().Add(20*time.Minute)), nil
 }
 
 func (s *s3store) Put(appId string, backupId string, r io.Reader) (int64, error) {
-	s3Path := fmt.Sprintf("pgbackups/%s/%s.backup", appId, backupId)
+	s3Path := s.pathFor(appId, backupId)
 
 	s3Putter, err := s.bucket.PutWriter(s3Path, nil, nil)
 	if err != nil {
@@ -47,6 +56,10 @@ func (s *s3store) Put(appId string, backupId string, r io.Reader) (int64, error)
 	return io.Copy(s3Putter, r)
 }
 
-func (*s3store) Delete(appId string, backupId string) error {
-	panic("todo")
+func (s *s3store) Delete(appId string, backupId string) error {
+	return s.bucket.Delete(s.pathFor(appId, backupId))
+}
+
+func (*s3store) pathFor(appId string, backupId string) string {
+	return fmt.Sprintf("pgbackups/%s/%s.backup", appId, backupId)
 }

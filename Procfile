@@ -1,1 +1,1 @@
-worker: pgbackups
+worker: pgbackups worker

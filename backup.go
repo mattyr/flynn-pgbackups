@@ -3,6 +3,7 @@ package main
 import (
 	"time"
 
+	"github.com/flynn/flynn/Godeps/_workspace/src/github.com/jackc/pgx"
 	"github.com/flynn/flynn/pkg/postgres"
 	"github.com/flynn/flynn/pkg/random"
 )
@@ -42,11 +43,27 @@ func (r *BackupRepo) NewBackup(appID string) (*Backup, error) {
 	return b, err
 }
 
+func (r *BackupRepo) GetBackup(backupID string) (*Backup, error) {
+	rows, err := r.db.Query("SELECT * FROM pgbackups WHERE backup_id = $1", backupID)
+	if err != nil {
+		return nil, err
+	}
+	backups, err := scanBackups(rows)
+	if err != nil || len(backups) == 0 {
+		return nil, err
+	}
+	return backups[0], nil
+}
+
 func (r *BackupRepo) GetBackups(appID string) ([]*Backup, error) {
 	rows, err := r.db.Query("SELECT * FROM pgbackups WHERE app_id = $1", appID)
 	if err != nil {
 		return nil, err
 	}
+	return scanBackups(rows)
+}
+
+func scanBackups(rows *pgx.Rows) ([]*Backup, error) {
 	defer rows.Close()
 	backups := []*Backup{}
 	for rows.Next() {

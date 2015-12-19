@@ -47,6 +47,10 @@ func NewFlynnClient() (*FlynnClient, error) {
 	return &FlynnClient{client: c}, nil
 }
 
+func (c *FlynnClient) GetApp(name string) (*ct.App, error) {
+	return c.client.GetApp(name)
+}
+
 func (c *FlynnClient) AppList() ([]*AppAndRelease, error) {
 	allApps, err := c.client.AppList()
 	if err != nil {
