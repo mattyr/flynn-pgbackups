@@ -9,4 +9,5 @@ addons:
 install:
   - go get github.com/tools/godep
   - go get github.com/flynn/flynn/Godeps/_workspace/src/github.com/jackc/pgx
+  - go get golang.org/x/sys/unix
   - godep restore
