@@ -76,13 +76,14 @@ func (pgb *PgBackups) BackupApp(app *AppAndRelease) (int64, error) {
 	r, w := io.Pipe()
 
 	errChan := make(chan error)
+
 	go func() {
-		var err error
-		bytes, err = pgb.Store.Put(app.App.ID, b.BackupID, r)
+		defer w.Close()
+		err = pgb.FlynnClient.StreamBackup(app, w)
 		errChan <- err
 	}()
 
-	err = pgb.FlynnClient.StreamBackup(app, w)
+	bytes, err = pgb.Store.Put(app.App.ID, b.BackupID, r)
 	if err != nil {
 		return bytes, err
 	}
