@@ -61,10 +61,10 @@ func listBackups(pgb *PgBackups) {
 		panic(err)
 	}
 
-	fmt.Println("App: %s ID: %s", app.Name, app.ID)
+	fmt.Printf("App: %s ID: %s", app.Name, app.ID)
 	fmt.Println("  [ID] - [Started] - [Completed] - [Bytes]")
 	for _, b := range backups {
-		fmt.Println("  %s - %s - %s - %d", b.StartedAt, b.CompletedAt, b.Bytes)
+		fmt.Printf("  %s - %s - %s - %d", b.BackupID, b.StartedAt, b.CompletedAt, b.Bytes)
 	}
 }
 
