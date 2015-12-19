@@ -79,7 +79,7 @@ func (pgb *PgBackups) BackupApp(app *AppAndRelease) (int64, error) {
 
 	go func() {
 		defer w.Close()
-		err = pgb.FlynnClient.StreamBackup(app, w)
+		err := pgb.FlynnClient.StreamBackup(app, w)
 		errChan <- err
 	}()
 
@@ -87,6 +87,7 @@ func (pgb *PgBackups) BackupApp(app *AppAndRelease) (int64, error) {
 	if err != nil {
 		return bytes, err
 	}
+
 	err = <-errChan
 	if err != nil {
 		return bytes, err
