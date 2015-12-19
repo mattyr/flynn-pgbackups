@@ -7,6 +7,7 @@ services:
 addons:
   postgresql: "9.3"
 install:
+  - go get github.com/flynn/flynn
+  - go get github.com/flynn/flynn/Godeps/_workspace/src/github.com/jackc/pgx
   - export GOPATH=${TRAVIS_BUILD_DIR}/Godeps/_workspace:$GOPATH
   - export PATH=${TRAVIS_BUILD_DIR}/Godeps/_workspace/bin:$PATH
-  - go get github.com/flynn/flynn/Godeps/_workspace/src/github.com/jackc/pgx
