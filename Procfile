@@ -1,1 +1,1 @@
-worker: pgbackups worker
+worker: flynn-pgbackups worker

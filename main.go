@@ -39,6 +39,10 @@ func runScheduler(pgb *PgBackups) {
 }
 
 func listBackups(pgb *PgBackups) {
+	if len(os.Args) < 2 {
+		panic("App name must be given (pgbackups [list] [appname])")
+	}
+
 	appName := os.Args[2]
 
 	if appName == "" {
@@ -65,6 +69,9 @@ func listBackups(pgb *PgBackups) {
 }
 
 func backupUrl(pgb *PgBackups) {
+	if len(os.Args) < 2 {
+		panic("Backup id must be given (pgbackups [url] [backup id])")
+	}
 	id := os.Args[2]
 	if id == "" {
 		panic("Backup id must be given (pgbackups [url] [backup id])")
