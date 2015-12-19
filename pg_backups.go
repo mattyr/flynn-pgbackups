@@ -79,18 +79,23 @@ func (pgb *PgBackups) BackupApp(app *AppAndRelease) (int64, error) {
 
 	go func() {
 		defer w.Close()
-		err := pgb.FlynnClient.StreamBackup(app, w)
+		var err error
+		err = pgb.FlynnClient.StreamBackup(app, w)
 		errChan <- err
 	}()
 
-	bytes, err = pgb.Store.Put(app.App.ID, b.BackupID, r)
-	if err != nil {
-		return bytes, err
-	}
+	go func() {
+		defer r.Close()
+		var err error
+		bytes, err = pgb.Store.Put(app.App.ID, b.BackupID, r)
+		errChan <- err
+	}()
 
-	err = <-errChan
-	if err != nil {
-		return bytes, err
+	for i := 0; i < 2; i++ {
+		err = <-errChan
+		if err != nil {
+			return bytes, err
+		}
 	}
 
 	err = pgb.Repo.CompleteBackup(b, bytes)
