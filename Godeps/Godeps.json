@@ -1,5 +1,5 @@
 {
-	"ImportPath": "lithiumreactor.com/internal/pgbackups",
+	"ImportPath": "github.com/mattyr/flynn-pgbackups",
 	"GoVersion": "go1.5",
 	"Deps": [
 		{
