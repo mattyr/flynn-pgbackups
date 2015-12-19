@@ -1,13 +1,12 @@
 language: go
 go:
-  - 1.5
+  - 1.5.2
 sudo: false
 services:
   - postgresql
 addons:
-  postgresql: "9.3"
+  postgresql: "9.4"
 install:
-  - go get github.com/flynn/flynn
   - go get github.com/flynn/flynn/Godeps/_workspace/src/github.com/jackc/pgx
   - export GOPATH=${TRAVIS_BUILD_DIR}/Godeps/_workspace:$GOPATH
   - export PATH=${TRAVIS_BUILD_DIR}/Godeps/_workspace/bin:$PATH
