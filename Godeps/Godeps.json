@@ -3,6 +3,14 @@
 	"GoVersion": "go1.5",
 	"Deps": [
 		{
+			"ImportPath": "github.com/AdRoll/goamz/aws",
+			"Rev": "235a2b8413ff0b60e8e31b11e7664f752b1ce4a3"
+		},
+		{
+			"ImportPath": "github.com/AdRoll/goamz/s3",
+			"Rev": "235a2b8413ff0b60e8e31b11e7664f752b1ce4a3"
+		},
+		{
 			"ImportPath": "github.com/docker/docker/pkg/units",
 			"Comment": "v1.4.1-8468-gec1002d",
 			"Rev": "ec1002db58e8f84fc6d8306a3dd580e5fa88872c"
