@@ -44,6 +44,7 @@ flynn resource add postgres
 
 - AWS_ACCESS_KEY_ID [required] - from your created AWS credentials
 - AWS_SECRET_ACCESS_KEY [required] - from your created AWS credentials
+- S3_BUCKET [required] - the bucket to store backups in
 - CONTROLLER_KEY [required] - can be obtained with
   ```bash
   flynn -a controller env | grep AUTH_KEY
@@ -62,7 +63,8 @@ This can be done with a command like:
 flynn env set \
   AWS_ACCESS_KEY_ID=[your-access-key] \
   AWS_SECRET_ACCESS_KEY=[your-secret-key] \
-  CONTROLLER_KEY=[your-controller-key]
+  CONTROLLER_KEY=[your-controller-key] \
+  S3_BUCKET=[your-s3-bucket]
 ```
 
 ### 5. Push and scale
