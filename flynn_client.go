@@ -12,7 +12,7 @@ import (
 )
 
 type FlynnClient struct {
-	client *controller.Client
+	client controller.Client
 }
 
 type AppAndRelease struct {
@@ -29,7 +29,7 @@ func NewFlynnClient() (*FlynnClient, error) {
 	controllerKey := os.Getenv("CONTROLLER_KEY")
 	controllerTlsPin := os.Getenv("CONTROLLER_TLS_PIN")
 
-	var c *controller.Client
+	var c controller.Client
 	var err error
 	if controllerTlsPin == "" {
 		c, err = controller.NewClient(controllerUrl, controllerKey)
@@ -107,8 +107,7 @@ func (c *FlynnClient) createPgBackupJobRequest(app *AppAndRelease) (*ct.NewJob, 
 	}
 
 	req := &ct.NewJob{
-		Entrypoint: []string{"pg_dump"},
-		Cmd:        []string{"--format=custom", "--no-owner", "--no-acl"},
+		Args:       []string{"pg_dump", "--format=custom", "--no-owner", "--no-acl"},
 		TTY:        false,
 		ReleaseID:  pgRelease.ID,
 		ReleaseEnv: false,

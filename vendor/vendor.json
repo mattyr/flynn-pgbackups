@@ -1,0 +1,269 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "jf7K+UTQNIzRdlG5F4zX/8b++/E=",
+			"path": "github.com/AdRoll/goamz/aws",
+			"revision": "34e96a017307e0442cd8e5f0c15e199c9934563f",
+			"revisionTime": "2016-07-06T21:13:44Z"
+		},
+		{
+			"checksumSHA1": "ey9ddXTW9dncjJz/COKpeYm+sgg=",
+			"path": "github.com/AdRoll/goamz/s3",
+			"revision": "34e96a017307e0442cd8e5f0c15e199c9934563f",
+			"revisionTime": "2016-07-06T21:13:44Z"
+		},
+		{
+			"checksumSHA1": "18hmvak2Dc9x5cgKeZ2iApviT7w=",
+			"origin": "github.com/flynn/flynn/vendor/github.com/docker/go-units",
+			"path": "github.com/docker/go-units",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "x81/pe0iK2qoAvIBQP8IYtWMD3k=",
+			"path": "github.com/flynn/flynn/controller/client",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "RI23Gc8yIf6xCSb0s6482kYosIw=",
+			"path": "github.com/flynn/flynn/controller/client/v1",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "8z7NdXmIaIA5WvgTRlp53+6eg+c=",
+			"path": "github.com/flynn/flynn/controller/types",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "pJHpAT4560rOPEl9U/lesMAVWMM=",
+			"path": "github.com/flynn/flynn/discoverd/client",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "bwtPrsq8iCSbfLJZrtCEZNQyias=",
+			"path": "github.com/flynn/flynn/discoverd/types",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "RAk5Dpo/Ijh6i+1C998Zfab2uWU=",
+			"path": "github.com/flynn/flynn/host/resource",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "K0zZey3xRswZb8mlV8SFda4uqpY=",
+			"path": "github.com/flynn/flynn/host/types",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "+utb7eIZHIw34kg8TJ1uSlJuTnE=",
+			"path": "github.com/flynn/flynn/host/volume",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "+bm47FPE2sM2U9RDg/MKMtDZwT8=",
+			"path": "github.com/flynn/flynn/pinkerton/layer",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "aWKO1x/B8WqCpmbIM+EhkB904u4=",
+			"path": "github.com/flynn/flynn/pkg/attempt",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "wc8cYxdPonDcN24Ns84rWnILHII=",
+			"path": "github.com/flynn/flynn/pkg/certgen",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "Ijp8SBw5EJ6S+U3rKzi8PptnGBI=",
+			"path": "github.com/flynn/flynn/pkg/cluster",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "mVBbGbF0KJ5oE2nvLD+H2OBeX0I=",
+			"path": "github.com/flynn/flynn/pkg/cors",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "9WyIlgwsjVEq9opmhtMAUQ9h5CY=",
+			"path": "github.com/flynn/flynn/pkg/ctxhelper",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "dNjhD1UXh0UlQEp64M4cSzwfSUA=",
+			"path": "github.com/flynn/flynn/pkg/dialer",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "ovQB998lvjM6rbA13QnOhOjTJO8=",
+			"path": "github.com/flynn/flynn/pkg/httpclient",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "ceaEs6vG28wz1TL5cW8W/DbwnjI=",
+			"path": "github.com/flynn/flynn/pkg/httphelper",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "Z9XVkgcaLT57BVIE/EeCJY7vedY=",
+			"path": "github.com/flynn/flynn/pkg/pinned",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "zCHF6aTWX32OBVNhnHU85d/2veM=",
+			"path": "github.com/flynn/flynn/pkg/postgres",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "RlBpKzuHhw4qmyNFXi+zOaVhavE=",
+			"path": "github.com/flynn/flynn/pkg/random",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "W06x1UWuOtiy5eWJBPW2kK9jkRE=",
+			"path": "github.com/flynn/flynn/pkg/shutdown",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "JQZnAcNrO8SC2feglQBu+ibBTBI=",
+			"path": "github.com/flynn/flynn/pkg/sirenia/state",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "L4/2zyScFYOdJ3PSdw8JMmTmtx4=",
+			"path": "github.com/flynn/flynn/pkg/sirenia/xlog",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "2xRXlE+scWtYFPpwzswl4+e/IyE=",
+			"path": "github.com/flynn/flynn/pkg/sse",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "VlRWm9UjerTTO68ClLKHXXMC1r8=",
+			"path": "github.com/flynn/flynn/pkg/stream",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "eG3xpS6IgehFdSIZk20KMJjKCYE=",
+			"path": "github.com/flynn/flynn/pkg/tlscert",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "LgV8yx/BLwTK9b1lEJGQRWpTUtQ=",
+			"path": "github.com/flynn/flynn/pkg/typeconv",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "d2Qe5O7Gjmat1tqEjhv3oAnn26Y=",
+			"path": "github.com/flynn/flynn/router/types",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "ZCMYdNAc0qTW5e7hWTZBVnYUXDs=",
+			"origin": "github.com/flynn/flynn/vendor/github.com/jackc/pgx",
+			"path": "github.com/jackc/pgx",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "sn2+U+hFUtDmiSEwmIzqqfYhGdg=",
+			"origin": "github.com/flynn/flynn/vendor/github.com/julienschmidt/httprouter",
+			"path": "github.com/julienschmidt/httprouter",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "BVAuucCGrJLqxJDq/z+WjdVBkSo=",
+			"origin": "github.com/flynn/flynn/vendor/github.com/mattn/go-colorable",
+			"path": "github.com/mattn/go-colorable",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "NkbetqlpWBi3gP08JDneC+axTKw=",
+			"origin": "github.com/flynn/flynn/vendor/github.com/mattn/go-isatty",
+			"path": "github.com/mattn/go-isatty",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "TyPwpCfbW4b8i9twcyzICcwa+CQ=",
+			"path": "github.com/rlmcpherson/s3gof3r",
+			"revision": "2a8e00b3728288727f88eb49aa4f84aca0c69874",
+			"revisionTime": "2016-08-29T19:33:16Z"
+		},
+		{
+			"checksumSHA1": "pcJPMbPWpjqbGrPuoa53k6YmAF8=",
+			"path": "github.com/robfig/cron",
+			"revision": "ab4c16f3a09641bd19d65f55b3d8d6edda7a8e05",
+			"revisionTime": "2016-08-12T11:50:03Z"
+		},
+		{
+			"checksumSHA1": "jmDEnHmGflXf/8uGh9ph9DE+48Y=",
+			"origin": "github.com/flynn/flynn/vendor/golang.org/x/net/context",
+			"path": "golang.org/x/net/context",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "kALQxpz+0xx9vn+SdbjA6MQfpCk=",
+			"origin": "github.com/flynn/flynn/vendor/golang.org/x/sys/unix",
+			"path": "golang.org/x/sys/unix",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "KgiZyjQ+F+Ld2hrpl5rSjA7KJo0=",
+			"origin": "github.com/flynn/flynn/vendor/gopkg.in/inconshreveable/log15.v2",
+			"path": "gopkg.in/inconshreveable/log15.v2",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "PoeckSQ6BcGq39E0+17d7ghjI6k=",
+			"origin": "github.com/flynn/flynn/vendor/gopkg.in/inconshreveable/log15.v2/stack",
+			"path": "gopkg.in/inconshreveable/log15.v2/stack",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		},
+		{
+			"checksumSHA1": "g/ZDaG7fEE8a/bbj+bKGUr6mj4Y=",
+			"origin": "github.com/flynn/flynn/vendor/gopkg.in/inconshreveable/log15.v2/term",
+			"path": "gopkg.in/inconshreveable/log15.v2/term",
+			"revision": "a29df903dd7c971ff817b1c76ce5b6cf2d7da0ad",
+			"revisionTime": "2016-09-01T16:09:53Z"
+		}
+	],
+	"rootPath": "github.com/mattyr/flynn-pgbackups"
+}
