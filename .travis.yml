@@ -1,13 +1,8 @@
 language: go
 go:
-  - 1.5.2
+  - 1.7
 sudo: false
 services:
   - postgresql
 addons:
   postgresql: "9.4"
-install:
-  - go get github.com/tools/godep
-  - go get github.com/flynn/flynn/Godeps/_workspace/src/github.com/jackc/pgx
-  - go get golang.org/x/sys/unix
-  - godep restore
