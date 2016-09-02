@@ -6,3 +6,5 @@ services:
   - postgresql
 addons:
   postgresql: "9.4"
+install:
+  - echo "Nothing to install"
