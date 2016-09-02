@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/flynn/flynn/Godeps/_workspace/src/github.com/jackc/pgx"
 	"github.com/flynn/flynn/pkg/postgres"
+	"github.com/jackc/pgx"
 )
 
 var db *postgres.DB
