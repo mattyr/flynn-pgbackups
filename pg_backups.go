@@ -4,6 +4,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/flynn/flynn/pkg/postgres"
@@ -50,13 +51,15 @@ func (pgb *PgBackups) BackupAll() {
 	}
 
 	for _, a := range apps {
-		log.Printf("Backing up %s (%s)", a.App.Name, a.App.ID)
-		bytes, err := pgb.BackupApp(a)
-		if err != nil {
-			log.Printf("Error backing up %s (%s): %s", a.App.Name, a.App.ID, err)
-			pgb.DeleteOldBackups(a)
-		} else {
-			log.Printf("Completed backing up %s (%s) bytes: %d", a.App.Name, a.App.ID, bytes)
+		if shouldBackUpApp(a) {
+			log.Printf("Backing up %s (%s)", a.App.Name, a.App.ID)
+			bytes, err := pgb.BackupApp(a)
+			if err != nil {
+				log.Printf("Error backing up %s (%s): %s", a.App.Name, a.App.ID, err)
+				pgb.DeleteOldBackups(a)
+			} else {
+				log.Printf("Completed backing up %s (%s) bytes: %d", a.App.Name, a.App.ID, bytes)
+			}
 		}
 	}
 }
@@ -151,4 +154,17 @@ func shouldDeleteBackup(b *Backup) bool {
 		return false
 	}
 	return true
+}
+
+func shouldBackUpApp(app *AppAndRelease) bool {
+	appsToBackup := strings.Split(os.Getenv("APPS"), ",")
+	if len(appsToBackup) == 0 {
+		return true
+	}
+	for _, name := range appsToBackup {
+		if name == app.App.Name {
+			return true
+		}
+	}
+	return false
 }

@@ -56,6 +56,9 @@ flynn resource add postgres
 - CONTROLLER_URL [optional] - the internal url for the flynn controller
   (defaults to controller.discoverd) it's unlikely that you'll need to
   change this.
+- APPS [optional] - the names of the apps to backup separated by comma. If
+  this environment variable is not set, the worker will take backups of
+  all flynn applications.
 
 This can be done with a command like:
 
@@ -77,7 +80,8 @@ flynn scale worker=1
 ## How it works
 
 At the times specified by the SCHEDULE, the worker process takes backups
-of all flynn applications.  It obtains a list of all applications using
+of the applications specified in the APPS environment variable or all
+flynn applications. It obtains a list of all applications using
 the Flynn controller API, selecting only those who are using Flynn
 postgres (identified by having a "FLYNN_POSTGRES" environment variable).
 It then launches a pg_dump job (in a similar fashion to how the flynn
