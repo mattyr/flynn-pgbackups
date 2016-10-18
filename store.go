@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"os"
 	"time"
 
 	"github.com/AdRoll/goamz/aws"
@@ -27,8 +28,13 @@ func NewS3Store(bucketName string) (Storer, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	s3 := s3gof3r.New("", keys)
+	defaultRegion := "us-east-1"
+	region := os.Getenv("AWS_REGION")
+	if region == "" {
+		region = defaultRegion
+	}
+	s3Domain := fmt.Sprintf("s3-%s.amazonaws.com", region)
+	s3 := s3gof3r.New(s3Domain, keys)
 	bucket := s3.Bucket(bucketName)
 
 	return &s3store{bucketName: bucketName, bucket: bucket}, nil
@@ -39,7 +45,12 @@ func (s *s3store) DownloadUrl(appId string, backupId string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	svc := s3.New(auth, aws.GetRegion("us-east-1")) // TODO: configurable?
+	defaultRegion := "us-east-1"
+	region := os.Getenv("AWS_REGION")
+	if region == "" {
+		region = defaultRegion;
+	}
+	svc := s3.New(auth, aws.GetRegion(region))
 	b := svc.Bucket(s.bucketName)
 	return b.SignedURL(s.pathFor(appId, backupId), time.Now().Add(20*time.Minute)), nil
 }
