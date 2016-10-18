@@ -24,17 +24,17 @@ type s3store struct {
 	regionName string
 }
 
-func NewS3Store(bucketName string, region string) (Storer, error) {
+func NewS3Store(bucketName string, regionName string) (Storer, error) {
 	keys, err := s3gof3r.EnvKeys()
 	if err != nil {
 		return nil, err
 	}
-	region = setRegion(region)
-	s3Domain := fmt.Sprintf("s3-%s.amazonaws.com", region)
+	regionName = getRegion(regionName)
+	s3Domain := fmt.Sprintf("s3-%s.amazonaws.com", regionName)
 	s3 := s3gof3r.New(s3Domain, keys)
 	bucket := s3.Bucket(bucketName)
 
-	return &s3store{bucketName: bucketName, bucket: bucket, regionName: region}, nil
+	return &s3store{bucketName: bucketName, bucket: bucket, regionName: regionName}, nil
 }
 
 func (s *s3store) DownloadUrl(appId string, backupId string) (string, error) {
@@ -67,12 +67,12 @@ func (*s3store) pathFor(appId string, backupId string) string {
 	return fmt.Sprintf("pgbackups/%s/%s.backup", appId, backupId)
 }
 
-func setRegion(region string) string {
-	if region == "" {
-		region = os.Getenv("AWS_REGION")
-		if region == "" {
-			region = "us-east-1"
+func getRegion(regionName string) string {
+	if regionName == "" {
+		regionName = os.Getenv("AWS_REGION")
+		if regionName == "" {
+			regionName = "us-east-1"
 		}
 	}
-	return region
+	return regionName
 }
