@@ -21,23 +21,20 @@ type Storer interface {
 type s3store struct {
 	bucketName string
 	bucket     *s3gof3r.Bucket
+	regionName string
 }
 
-func NewS3Store(bucketName string) (Storer, error) {
+func NewS3Store(bucketName string, region string) (Storer, error) {
 	keys, err := s3gof3r.EnvKeys()
 	if err != nil {
 		return nil, err
 	}
-	defaultRegion := "us-east-1"
-	region := os.Getenv("AWS_REGION")
-	if region == "" {
-		region = defaultRegion
-	}
+	region = setRegion(region)
 	s3Domain := fmt.Sprintf("s3-%s.amazonaws.com", region)
 	s3 := s3gof3r.New(s3Domain, keys)
 	bucket := s3.Bucket(bucketName)
 
-	return &s3store{bucketName: bucketName, bucket: bucket}, nil
+	return &s3store{bucketName: bucketName, bucket: bucket, regionName: region}, nil
 }
 
 func (s *s3store) DownloadUrl(appId string, backupId string) (string, error) {
@@ -45,12 +42,7 @@ func (s *s3store) DownloadUrl(appId string, backupId string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	defaultRegion := "us-east-1"
-	region := os.Getenv("AWS_REGION")
-	if region == "" {
-		region = defaultRegion;
-	}
-	svc := s3.New(auth, aws.GetRegion(region))
+	svc := s3.New(auth, aws.GetRegion(s.regionName))
 	b := svc.Bucket(s.bucketName)
 	return b.SignedURL(s.pathFor(appId, backupId), time.Now().Add(20*time.Minute)), nil
 }
@@ -73,4 +65,14 @@ func (s *s3store) Delete(appId string, backupId string) error {
 
 func (*s3store) pathFor(appId string, backupId string) string {
 	return fmt.Sprintf("pgbackups/%s/%s.backup", appId, backupId)
+}
+
+func setRegion(region string) string {
+	if region == "" {
+		region = os.Getenv("AWS_REGION")
+		if region == "" {
+			region = "us-east-1"
+		}
+	}
+	return region
 }

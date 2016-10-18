@@ -23,8 +23,7 @@ func NewPgBackups() (*PgBackups, error) {
 		return nil, err
 	}
 
-	bucketName := os.Getenv("S3_BUCKET")
-	store, err := NewS3Store(bucketName)
+	store, err := NewS3Store(os.Getenv("S3_BUCKET"), os.Getenv("AWS_REGION"))
 	if err != nil {
 		return nil, err
 	}
