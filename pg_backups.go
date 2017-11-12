@@ -55,9 +55,9 @@ func (pgb *PgBackups) BackupAll() {
 			bytes, err := pgb.BackupApp(a)
 			if err != nil {
 				log.Printf("Error backing up %s (%s): %s", a.App.Name, a.App.ID, err)
-				pgb.DeleteOldBackups(a)
 			} else {
 				log.Printf("Completed backing up %s (%s) bytes: %d", a.App.Name, a.App.ID, bytes)
+				pgb.DeleteOldBackups(a)
 			}
 		}
 	}
