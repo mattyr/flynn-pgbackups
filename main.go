@@ -46,7 +46,7 @@ func listBackups(pgb *PgBackups) {
 	appName := os.Args[2]
 
 	if appName == "" {
-		panic("App name must be given (pgbackups [list] [appname])")
+		panic("App name must be given (pgbackups list [appname])")
 	}
 
 	app, err := pgb.FlynnClient.GetApp(appName)

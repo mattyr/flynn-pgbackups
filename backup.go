@@ -67,7 +67,7 @@ func (r *BackupRepo) GetBackup(backupID string) (*Backup, error) {
 }
 
 func (r *BackupRepo) GetBackups(appID string) ([]*Backup, error) {
-	rows, err := r.db.Query("SELECT * FROM pgbackups WHERE app_id = $1", appID)
+	rows, err := r.db.Query("SELECT * FROM pgbackups WHERE app_id = $1 ORDER BY started_at ASC", appID)
 	if err != nil {
 		return nil, err
 	}
