@@ -30,7 +30,7 @@ func NewS3Store(bucketName string, regionName string) (Storer, error) {
 		return nil, err
 	}
 	regionName = getRegion(regionName)
-	s3Domain := fmt.Sprintf("s3-%s.amazonaws.com", regionName)
+	s3Domain := fmt.Sprintf("s3.%s.amazonaws.com", regionName)
 	s3 := s3gof3r.New(s3Domain, keys)
 	bucket := s3.Bucket(bucketName)
 
