@@ -157,7 +157,7 @@ func shouldDeleteBackup(b *Backup) bool {
 
 func shouldBackUpApp(app *AppAndRelease) bool {
 	appsToBackup := strings.Split(os.Getenv("APPS"), ",")
-	if len(appsToBackup) == 0 {
+	if len(appsToBackup) == 0 || (len(appsToBackup) == 1 && appsToBackup[0] == "") {
 		return true
 	}
 	for _, name := range appsToBackup {
